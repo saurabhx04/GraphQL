@@ -8,8 +8,17 @@ import _db  from './_db.js';
 const resolvers = {
    Query: {
        games: () => _db.games,
+
+       game: (_, args) => _db.games.find(game => game.id === args.id),
+
        authors: () => _db.authors,
-       reviews: () => _db.reviews
+
+       author: (_, args) => _db.authors.find(author => author.id === args.id),
+
+       reviews: () => _db.reviews,
+
+       review: (_, args) => _db.reviews.find(review => review.id === args.id)
+
    }
 };
 
