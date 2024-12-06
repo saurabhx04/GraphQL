@@ -3,10 +3,14 @@ import { startStandaloneServer } from '@apollo/server/standalone';
 
 import { typeDefs } from './schema.js';
 
-import { _db } from './_db.js';
+import _db  from './_db.js';
 
 const resolvers = {
-
+   Query: {
+       games: () => _db.games,
+       authors: () => _db.authors,
+       reviews: () => _db.reviews
+   }
 };
 
 // server setup
@@ -15,7 +19,7 @@ const server = new ApolloServer({
 // that together define the "shape" of queries that are executed against
 // your data.
     typeDefs,
-    // resolvers
+    resolvers
     
     
 });
